@@ -5,7 +5,13 @@ import logo from '../public/starwarslogo.png';
 const Nav = () => {
   return (
     <nav>
-      <Image src={logo} width="130px" height="130px" className="logo" />
+      <Image
+        src={logo}
+        width="130px"
+        height="130px"
+        className="logo"
+        priority
+      />
       <ul className="nav-links">
         <li>
           <Link href="/" passHref>
