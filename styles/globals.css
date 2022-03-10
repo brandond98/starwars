@@ -12,11 +12,15 @@ body {
   box-sizing: border-box;
 }
 
+.main {
+  display: flex;
+  min-height: 100vh;
+}
+
 nav {
   background-color: black;
   width: 10rem;
-  height: 100%;
-  position: fixed;
+
   display: flex;
   flex-direction: column;
 }

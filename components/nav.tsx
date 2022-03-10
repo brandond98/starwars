@@ -14,7 +14,7 @@ const Nav = () => {
         </li>
         <li>
           <Link href="/characters" passHref>
-            <a>Star Wars</a>
+            <a className="accordian">Star Wars</a>
           </Link>
         </li>
       </ul>
