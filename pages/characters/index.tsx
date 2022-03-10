@@ -1,5 +1,13 @@
+import dayjs from 'dayjs';
+
 const CharactersPage = () => {
-  return <h1>Hello</h1>;
+  const now = dayjs().format('DD/MM/YYYY');
+  return (
+    <>
+      <header>{now}</header>
+      <section>Hello</section>
+    </>
+  );
 };
 
 export default CharactersPage;

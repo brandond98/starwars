@@ -4,10 +4,12 @@ import Nav from '../components/nav';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="main">
+    <main>
       <Nav />
-      <Component {...pageProps} />
-    </div>
+      <div className="main-content">
+        <Component {...pageProps} />
+      </div>
+    </main>
   );
 }
 
