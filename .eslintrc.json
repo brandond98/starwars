@@ -17,11 +17,21 @@
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": "off",
     "react/jsx-props-no-spreading": "off",
+    "import/extensions": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+
     "react/jsx-filename-extension": [
       1,
       {
         "extensions": [".js", ".jsx", ".tsx", ".ts"]
       }
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }
