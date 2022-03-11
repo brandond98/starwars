@@ -14,8 +14,8 @@ const Pagination = ({ perPage, total, handlePageChange }: PaginationProps) => {
   return (
     <nav>
       <ul className="pagination">
-        {pageNumbers.map((num, i) => (
-          <li key={i}>
+        {pageNumbers.map((num) => (
+          <li key={num}>
             <a href="#" onClick={() => handlePageChange(num)}>
               {num}
             </a>
