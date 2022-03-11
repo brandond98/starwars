@@ -3,15 +3,17 @@ import type { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/client';
 import Nav from '../components/nav';
 import client from '../apollo-client';
+import Header from '../components/header';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <main>
         <Nav />
-        <div className="main-content">
+        <section className="main-content">
+          <Header />
           <Component {...pageProps} />
-        </div>
+        </section>
       </main>
     </ApolloProvider>
   );
