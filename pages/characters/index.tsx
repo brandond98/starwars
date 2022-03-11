@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
+import Characters from '../../components/characters';
 import fetchQuote from '../../services/apiService';
 import { QuoteObj } from '../../types/quoteObj';
 
@@ -19,6 +20,7 @@ const CharactersPage = () => {
       <section>
         <h1>Characters</h1>
         <div className="quotes">{quote?.content}</div>
+        <Characters />
       </section>
     </>
   );
