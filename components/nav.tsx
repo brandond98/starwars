@@ -4,7 +4,7 @@ import logo from '../public/starwarslogo.png';
 
 const Nav = () => {
   return (
-    <nav>
+    <nav className="navigation">
       <Image
         src={logo}
         width="130px"

@@ -1,4 +1,5 @@
 export type CharacterObj = {
+  id: string;
   name: string;
   hairColor: string;
   skinColor: string;

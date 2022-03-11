@@ -1,28 +1,46 @@
-import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
 import Characters from '../../components/characters';
+import Pagination from '../../components/pagination';
 import fetchQuote from '../../services/apiService';
 import { QuoteObj } from '../../types/quoteObj';
+import CharacterQuery from '../../graphql/CharacterQuery';
 
 const CharactersPage = () => {
-  const now = dayjs().format('DD/MM/YYYY');
   const [quote, setQuotes] = useState<QuoteObj>();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage, setPerPage] = useState(5);
 
   useEffect(() => {
-    (async () => {
+    const getQuote = async () => {
       await fetchQuote().then((res) => setQuotes(res));
-    })();
+    };
+    getQuote();
   }, []);
 
+  const { data, loading, error } = useQuery(CharacterQuery);
+
+  if (loading) return <h2>Loading...</h2>;
+  if (error) throw new Error(`${error}`);
+
+  const characters = data.allPeople.people;
+  const lastPostIdx = currentPage * perPage;
+  const firstPostIdx = lastPostIdx - perPage;
+  const currentCharacters = characters.slice(firstPostIdx, lastPostIdx);
+
+  const handlePageChange = (num: number) => setCurrentPage(num);
+
   return (
-    <>
-      <header>{now}</header>
-      <section>
-        <h1>Characters</h1>
-        <div className="quotes">{quote?.content}</div>
-        <Characters />
-      </section>
-    </>
+    <section>
+      <h1>Characters</h1>
+      <div className="quotes">{quote?.content}</div>
+      <Characters characters={currentCharacters} />
+      <Pagination
+        perPage={perPage}
+        total={characters.length}
+        handlePageChange={handlePageChange}
+      />
+    </section>
   );
 };
 

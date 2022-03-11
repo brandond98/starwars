@@ -1,9 +1,10 @@
 import { gql } from '@apollo/client';
 
-const characterQuery = gql`
+const CharacterQuery = gql`
   query CharacterQuery {
     allPeople {
       people {
+        id
         name
         hairColor
         skinColor
@@ -17,4 +18,4 @@ const characterQuery = gql`
   }
 `;
 
-export default characterQuery;
+export default CharacterQuery;
