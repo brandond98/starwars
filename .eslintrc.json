@@ -20,6 +20,7 @@
     "import/extensions": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "no-use-before-define": "off",
+    "no-unused-vars": "off",
     "react/jsx-filename-extension": [
       1,
       {

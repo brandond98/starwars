@@ -11,7 +11,7 @@ const Characters = ({ characters }: CharactersProps) => {
       <thead>
         <tr>
           <th>Name</th>
-          <th>Hair Colour</th>
+          <th>Hair Colour </th>
           <th>Skin Colour</th>
           <th>Eye Colour</th>
           <th>Gender</th>
