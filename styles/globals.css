@@ -106,3 +106,7 @@ main {
   display: flex;
   margin-bottom: 1rem;
 }
+
+.breadcrumbs {
+  margin-top: 1rem;
+}

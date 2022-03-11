@@ -8,6 +8,7 @@ import Quote from '../../components/quote';
 import SortSelector from '../../components/selectors/sortSelector';
 import extract from '../../helpers/extract';
 import Filter from '../../components/filter';
+import BreadCrumbs from '../../components/breadcrumbs';
 
 const CharactersPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,7 +16,7 @@ const CharactersPage = () => {
   const [sort, setSort] = useState('');
   const [eyeColour, setEyeColour] = useState('');
   const [hairColour, setHairColour] = useState('');
-  const [homeland, setHomeland] = useState('');
+  const [homeworld, setHomeworld] = useState('');
 
   const { data, loading, error } = useQuery(AllCharactersQuery);
 
@@ -31,13 +32,18 @@ const CharactersPage = () => {
       return a[sort] > b[sort] ? 1 : -1;
     })
     .filter((character) => {
-      if (eyeColour) return character.eyeColor === eyeColour;
+      if (eyeColour || hairColour || homeworld)
+        return (
+          character.eyeColor === eyeColour ||
+          character.hairColor === hairColour ||
+          character.homeworld.name === homeworld
+        );
       return character;
     });
 
   const eyeColours = extract(characters, 'eyeColor');
   const hairColours = extract(characters, 'hairColor');
-  const homelands = extract(characters, 'homeworld');
+  const homeworlds = extract(characters, 'homeworld');
 
   const lastPostIdx = currentPage * perPage;
   const firstPostIdx = lastPostIdx - perPage;
@@ -47,27 +53,48 @@ const CharactersPage = () => {
   const handlePerPageChange = (num: string) => setPerPage(parseInt(num, 10));
   const handleSortChange = (value: string) => setSort(value);
   const handleEyeColourChange = (value: string) => setEyeColour(value);
+  const handleHairColourChange = (value: string) => setHairColour(value);
+  const handleHomeworldChange = (value: string) => setHomeworld(value);
 
   return (
-    <section>
-      <h1>Characters</h1>
-      <Quote />
-      <div className="selectors">
-        <PerPageSelector handleChange={handlePerPageChange} perPage={perPage} />
-        <SortSelector handleChange={handleSortChange} value={sort} />
-        <Filter
-          options={eyeColours}
-          handleChange={handleEyeColourChange}
-          selected={eyeColour}
+    <>
+      <BreadCrumbs />
+      <section>
+        <h1>Characters</h1>
+        <Quote />
+        <div className="selectors">
+          <PerPageSelector
+            handleChange={handlePerPageChange}
+            perPage={perPage}
+          />
+          <SortSelector handleChange={handleSortChange} value={sort} />
+          <Filter
+            options={eyeColours}
+            handleChange={handleEyeColourChange}
+            selected={eyeColour}
+            placeholder="Eye Colour"
+          />
+          <Filter
+            options={hairColours}
+            handleChange={handleHairColourChange}
+            selected={hairColour}
+            placeholder="Hair Colour"
+          />
+          <Filter
+            options={homeworlds}
+            handleChange={handleHomeworldChange}
+            selected={homeworld}
+            placeholder="Homeworld"
+          />
+        </div>
+        <Characters characters={currentCharacters} />
+        <Pagination
+          perPage={perPage}
+          total={sortedCharacters.length}
+          handlePageChange={handlePageChange}
         />
-      </div>
-      <Characters characters={currentCharacters} />
-      <Pagination
-        perPage={perPage}
-        total={characters.length}
-        handlePageChange={handlePageChange}
-      />
-    </section>
+      </section>
+    </>
   );
 };
 

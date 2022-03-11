@@ -2,14 +2,20 @@ type FilterProps = {
   options: string[];
   handleChange: (value: string) => void;
   selected: string;
+  placeholder: string;
 };
 
-const Filter = ({ options, handleChange, selected }: FilterProps) => {
+const Filter = ({
+  options,
+  handleChange,
+  selected,
+  placeholder,
+}: FilterProps) => {
   return (
     <select onChange={(e) => handleChange(e.target.value)} value={selected}>
-      <option>Eye Colour</option>
+      <option>{placeholder}</option>
       {options.map((colour: string) => (
-        <option>{colour}</option>
+        <option key={colour}>{colour}</option>
       ))}
     </select>
   );
