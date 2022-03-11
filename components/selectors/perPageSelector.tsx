@@ -1,7 +1,7 @@
 import React from 'react';
 
 type PerPageSelectorProps = {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement> | string) => void;
+  handleChange: (e: string) => void;
   perPage: number;
 };
 
