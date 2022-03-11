@@ -5,6 +5,7 @@ import Pagination from '../../components/pagination';
 import fetchQuote from '../../services/apiService';
 import { QuoteObj } from '../../types/quoteObj';
 import CharacterQuery from '../../graphql/CharacterQuery';
+import PerPageSelector from '../../components/perPageSelector';
 
 const CharactersPage = () => {
   const [quote, setQuotes] = useState<QuoteObj>();
@@ -29,11 +30,13 @@ const CharactersPage = () => {
   const currentCharacters = characters.slice(firstPostIdx, lastPostIdx);
 
   const handlePageChange = (num: number) => setCurrentPage(num);
+  const handlePerPageChange = (num: number) => setPerPage(num);
 
   return (
     <section>
       <h1>Characters</h1>
       <div className="quotes">{quote?.content}</div>
+      <PerPageSelector handleChange={handlePerPageChange} perPage={perPage} />
       <Characters characters={currentCharacters} />
       <Pagination
         perPage={perPage}
