@@ -1,23 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import Characters from '../../components/characters';
 import Pagination from '../../components/pagination';
-import fetchQuote from '../../services/apiService';
-import { QuoteObj } from '../../types/quoteObj';
 import { AllCharactersQuery } from '../../graphql/Characters';
 import PerPageSelector from '../../components/perPageSelector';
+import Quote from '../../components/quote';
 
 const CharactersPage = () => {
-  const [quote, setQuotes] = useState<QuoteObj>();
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(5);
-
-  useEffect(() => {
-    const getQuote = async () => {
-      await fetchQuote().then((res) => setQuotes(res));
-    };
-    getQuote();
-  }, []);
 
   const { data, loading, error } = useQuery(AllCharactersQuery);
 
@@ -35,7 +26,7 @@ const CharactersPage = () => {
   return (
     <section>
       <h1>Characters</h1>
-      <div className="quotes">{quote?.content}</div>
+      <Quote />
       <PerPageSelector handleChange={handlePerPageChange} perPage={perPage} />
       <Characters characters={currentCharacters} />
       <Pagination

@@ -1,6 +1,9 @@
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
+import FilmCard from '../../components/filmCard';
+import Quote from '../../components/quote';
 import { SingleCharacterQuery } from '../../graphql/Characters';
+import { Film } from '../../types/singleCharacterObj';
 
 const CharacterInfo = () => {
   const router = useRouter();
@@ -16,6 +19,13 @@ const CharacterInfo = () => {
   return (
     <section>
       <h1>{character.name}</h1>
+      <Quote />
+      <h2>Films:</h2>
+      <div className="films">
+        {character.filmConnection.films.map((film: Film) => (
+          <FilmCard film={film} />
+        ))}
+      </div>
     </section>
   );
 };

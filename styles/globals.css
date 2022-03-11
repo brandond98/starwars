@@ -21,6 +21,7 @@ main {
 
 .main-content {
   padding: 1rem;
+  width: 100%;
 }
 
 .navigation {
@@ -68,4 +69,16 @@ main {
   padding: 0.3rem;
   background-color: gray;
   border: 1px solid black;
+}
+
+.films {
+  display: flex;
+}
+
+.card {
+  background-color: rgb(33, 179, 236);
+  border-radius: 10px;
+  padding: 1rem;
+  color: #fff;
+  margin-right: 1rem;
 }
