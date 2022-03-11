@@ -18,7 +18,10 @@ const FilmCard = ({ film }: FilmCardProps) => {
         {film.director}
       </p>
       <p>
-        <b>Producers:</b> {film.producers[0]}
+        <b>Producers:</b>{' '}
+        {film.producers.map(
+          (producer, i) => `${producer}${i < film.producers.length - 1 && ', '}`
+        )}
       </p>
       <p>
         <b>Release date:</b> {film.releaseDate}

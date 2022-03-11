@@ -36,8 +36,10 @@ const CharactersPage = () => {
     <section>
       <h1>Characters</h1>
       <Quote />
-      <PerPageSelector handleChange={handlePerPageChange} perPage={perPage} />
-      <SortSelector handleChange={handleSortChange} value={sort} />
+      <div className="selectors">
+        <PerPageSelector handleChange={handlePerPageChange} perPage={perPage} />
+        <SortSelector handleChange={handleSortChange} value={sort} />
+      </div>
       <Characters characters={currentCharacters} />
       <Pagination
         perPage={perPage}
