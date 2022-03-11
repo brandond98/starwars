@@ -4,7 +4,7 @@ import Characters from '../../components/characters';
 import Pagination from '../../components/pagination';
 import fetchQuote from '../../services/apiService';
 import { QuoteObj } from '../../types/quoteObj';
-import CharacterQuery from '../../graphql/CharacterQuery';
+import { AllCharactersQuery } from '../../graphql/Characters';
 import PerPageSelector from '../../components/perPageSelector';
 
 const CharactersPage = () => {
@@ -19,7 +19,7 @@ const CharactersPage = () => {
     getQuote();
   }, []);
 
-  const { data, loading, error } = useQuery(CharacterQuery);
+  const { data, loading, error } = useQuery(AllCharactersQuery);
 
   if (loading) return <h2>Loading...</h2>;
   if (error) throw new Error(`${error}`);

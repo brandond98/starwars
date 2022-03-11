@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { CharacterObj } from '../types/characterObj';
 
 type CharactersProps = {
@@ -20,7 +21,11 @@ const Characters = ({ characters }: CharactersProps) => {
       <tbody>
         {characters.map((character: CharacterObj) => (
           <tr key={character.id}>
-            <td>{character.name}</td>
+            <td>
+              <Link href={`characters/${character.id}`} passHref>
+                <a>{character.name}</a>
+              </Link>
+            </td>
             <td>{character.hairColor}</td>
             <td>{character.skinColor}</td>
             <td>{character.eyeColor}</td>

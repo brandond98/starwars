@@ -1,4 +1,11 @@
-const PerPageSelector = ({ handleChange, perPage }) => {
+import React from 'react';
+
+type PerPageSelectorProps = {
+  handleChange: (e: React.ChangeEvent<HTMLInputElement> | string) => void;
+  perPage: number;
+};
+
+const PerPageSelector = ({ handleChange, perPage }: PerPageSelectorProps) => {
   return (
     <>
       <span>Results per page:</span>
